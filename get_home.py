@@ -6,6 +6,8 @@ contents = requests.get("https://newsapi.org/v2/top-headlines?country=nl&apiKey=
 
 status = contents['status']
 totalResults = contents['totalResults']
+source1 = contents['source']
 
 print('API status: ' + status)
 print('Total results: ' + str(totalResults))
+print(source1)
