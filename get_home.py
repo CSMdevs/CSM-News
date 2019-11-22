@@ -8,21 +8,17 @@ from newsapi import NewsApiClient
 newsapi = NewsApiClient(api_key='4898a7ecddb347c8b3998f1146d7b7a9')
 
 # /v2/top-headlines
-top_headlines = newsapi.get_top_headlines(q='bitcoin',
-                                          sources='bbc-news,the-verge',
-                                          category='business',
-                                          language='en',
-                                          country='us')
+def function(q=None, sources=None, category=None, language=None, country=None):
+    top_headlines = newsapi.get_top_headlines(category=category,
+                                          country=country,                                      
+                                          domains=domains,
+                                          from_param=from_param,
+                                          language=language,
+                                          page=2,
+                                          q=q,
+                                          sort_by=sort_by
+                                          sources=sources,
+                                          to=to)
+    return top_headlines
 
-# /v2/everything
-all_articles = newsapi.get_everything(q='bitcoin',
-                                      sources='bbc-news,the-verge',
-                                      domains='bbc.co.uk,techcrunch.com',
-                                      from_param='2017-12-01',
-                                      to='2017-12-12',
-                                      language='en',
-                                      sort_by='relevancy',
-                                      page=2)
-
-# /v2/sources
-sources = newsapi.get_sources()
+print(function(q='bitcoin'))
