@@ -2,23 +2,27 @@ import requests
 import json
 
 # The JSON
-contents = requests.get("https://newsapi.org/v2/top-headlines?country=nl&apiKey=4898a7ecddb347c8b3998f1146d7b7a9").json()
+from newsapi import NewsApiClient
 
-status = contents['status']
-totalResults = contents['totalResults']
-source1 = contents['articles'][0]['source']['name']
+# Init
+newsapi = NewsApiClient(api_key='4898a7ecddb347c8b3998f1146d7b7a9')
 
-print(status)
-print(totalResults)
-print(source1)
+# /v2/top-headlines
+top_headlines = newsapi.get_top_headlines(q='bitcoin',
+                                          sources='bbc-news,the-verge',
+                                          category='business',
+                                          language='en',
+                                          country='us')
 
-def my_function(contents):
-    for x in contents['articles']:
-        print("Source: " + str(x['source']['name']))
-        print("Author: " + str(x['author']))
-        print("Title: " + str(x['title']))
-        print("Description: " + str(x['description']))
-        print("Url: " + str(x['url']))
-        print("Url: " + str(x['url']))
+# /v2/everything
+all_articles = newsapi.get_everything(q='bitcoin',
+                                      sources='bbc-news,the-verge',
+                                      domains='bbc.co.uk,techcrunch.com',
+                                      from_param='2017-12-01',
+                                      to='2017-12-12',
+                                      language='en',
+                                      sort_by='relevancy',
+                                      page=2)
 
-my_function(contents)
+# /v2/sources
+sources = newsapi.get_sources()
