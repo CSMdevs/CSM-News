@@ -8,6 +8,7 @@ status = contents['status']
 totalResults = contents['totalResults']
 source1 = contents['articles'][0]['source']['name']
 
+
 print(status)
 print(totalResults)
 print(source1)
@@ -19,6 +20,6 @@ def my_function(contents):
         print("Title: " + str(x['title']))
         print("Description: " + str(x['description']))
         print("Url: " + str(x['url']))
-        print("Url: " + str(x['url']))
+        print(" ")
 
 my_function(contents)
